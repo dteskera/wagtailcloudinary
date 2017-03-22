@@ -1,4 +1,5 @@
 # Use cloudinary within wagtail
+work in progress
 
 ## About
 This package adds Cloudinary support to Wagtail CMS
