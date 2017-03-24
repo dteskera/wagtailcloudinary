@@ -1,0 +1,12 @@
+{% if simple %}
+  <img{% if id %} id="{{ id }}"{% endif %}{% if classes %} class="{{ classes }}"{% endif %}
+    src="{% if image %}{{ image.base_url }}{% if trans %}{{ trans }}{% endif %}{{ image.versioned_public_id }}{% else %}data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw{% endif%}"
+    width="{{ width }}" height="{{ height }}" />
+{% else %}
+  <img{% if id %} id="{{ id }}"{% endif %} class="lazy-load{% if classes %} {{ classes }}{% endif %}"
+    src="{{ image.base_url }}{% if trans %}{{ trans }}{% endif %}{{ image.versioned_public_id }}"
+    data-src="{{ image.versioned_public_id }}"
+    data-base="{{ image.base_url }}"
+    srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw"
+    data-ratio="{{ ratio }}"{% if description %} alt="{{ description }}"{% endif %}>
+{% endif %}

@@ -1,0 +1,55 @@
+.fileupload-wrapper {
+  display: inline-block;
+}
+.fileupload-button span{
+  display: inline-block;
+  margin-top: 10px;
+}
+.fileupload{
+  display: none;
+}
+
+.wagtailcloudinary-wrapper {
+  padding: 1px 0;
+  max-height: 900px;
+  overflow: auto;
+}
+
+.wagtailcloudinary-item {
+  position: relative;
+}
+
+.listing.images .js-wagtailcloudinary-update-tags, .listing.images .js-wagtailcloudinary-update{
+  color: white;
+}
+.listing.images .js-wagtailcloudinary-update-cancel{
+  border-color: #43b1b0;
+  color: #43b1b0;
+}
+.listing.images .js-wagtailcloudinary-update-cancel:hover{
+  background-color: #43b1b0;
+  color: white;
+}
+.wagtailcloudinary-add-tag{
+  margin: 10px 0px;
+}
+
+.wagtailcloudinary-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: white;
+  text-align: left;
+}
+
+.chooser input[type="text"].wagtailcloudinary-tag-input {
+  width: 100%;
+}
+
+.wagtailcloudinary-tag-wrapper a:hover {
+  color: #cd3238;
+}

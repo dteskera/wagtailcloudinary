@@ -1,0 +1,16 @@
+{% load wagtailcloudinary i18n %}
+<div class="chooser image-chooser{% if not image %} blank{% endif %}">
+  <div class="chosen">
+    <div class="preview-image">
+      {% version image admin_image_version id='preview_id_'|add:widget.name simple=True width=width height=height %}
+    </div>
+    <ul class="actions">
+      <li><a href="#" class="js-wagtailcloudinary-clear button button-secondary button-small" data-target="id_{{ widget.name }}"/>{% trans 'clear choice' %}</a></li>
+      <li><a href="#" class="js-wagtailcloudinary button button-secondary button-small" data-url="{% url 'wagtailcloudinary:browse' %}" data-target="id_{{ widget.name }}"/>{% trans 'choose another image' %}</a></li>
+    </ul>
+  </div>
+  <div class="unchosen">
+    <a href="#" class="js-wagtailcloudinary button button-secondary button-small" data-url="{% url 'wagtailcloudinary:browse' %}" data-target="id_{{ widget.name }}"/>{% trans 'choose an image' %}</a>
+  </div>
+  <input type="hidden" id="id_{{ widget.name }}" name="{{ widget.name }}" value="{{ image.get_prep_value }}"/>
+</div>

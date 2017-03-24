@@ -1,0 +1,32 @@
+{% load wagtailcloudinary i18n %}
+<li class="wagtailcloudinary-item">
+  {% with image=image|as_resource %}
+  <a href="{% url 'wagtailcloudinary:select' image.get_prep_value %}" class="image-choice js-wagtailcloudinary-select">
+    {% version image admin_image_version simple=True width=width height=height %}
+  </a>
+  {% endwith %}
+  <span>{% trans 'natural size' %}: {{ image.width }}x{{ image.height }}px</span>
+  <div>
+    <a href="#" class="js-wagtailcloudinary-update-tags button button-small icon icon-tag">{% trans 'edit tags' %}</a>
+  </div>
+  <div class="wagtailcloudinary-overlay">
+    <h3>{% trans 'Update image tags'|upper %}</h3>
+    <div class="wagtailcloudinary-tags-holder">
+      {% for item in image.tags %}
+      <span class="wagtailcloudinary-tag-wrapper">
+        <span class="tag">{{ item }}</span>
+        <a href="#" class="icon icon-cross"></a>
+      </span>
+      {% endfor %}
+    </div>
+    <div class="field wagtailcloudinary-add-tag">
+      <label>{% trans 'Add' %}:</label>
+      <div class="field-content">
+        <input autocomplete="off" class="wagtailcloudinary-tag-input" type="text">
+      </div>
+    </div>
+    <input type="hidden" value="{{ image.tags|join:',' }}">
+    <a href="#" class="js-wagtailcloudinary-update button button-small" data-ajax-url="{% url 'wagtailcloudinary:update' image.public_id %}">{% trans 'Update' %}</a>
+    <a href="#" class="js-wagtailcloudinary-update-cancel button button-secondary button-small">{% trans 'Cancel' %}</a>
+  </div>
+</li>

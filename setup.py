@@ -11,7 +11,7 @@ setup(
     name='wagtailcloudinary',
     version='0.1',
     packages=find_packages(),
-    install_requires=['cloudinary'],
+    install_requires=['cloudinary', 'wagtail'],
     include_package_data=True,
     license='BSD Licence',
     description='Cloudinary support for Wagtail CMS',

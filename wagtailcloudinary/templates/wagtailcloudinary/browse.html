@@ -1,0 +1,52 @@
+{% load i18n static %}
+{% trans "Choose an image" as choose_str %}
+
+{% include "wagtailadmin/shared/header.html" with title=choose_str merged=1 tabbed=1 icon="image" %}
+
+<ul class="tab-nav merged">
+  <li class="active"><a href="#search" >{% trans "Search" %}</a></li>
+  <li><a href="#upload">{% trans "Upload" %}</a></li>
+</ul>
+
+<div class="tab-content">
+  <section id="search" class="active nice-padding">
+  {% if tags %}
+    <div class="tags">
+      <span>{% trans 'Filter images by tags' %}</span>
+      <div class="status-tag tag-__all__ primary icon icon-view"><a class="js-wagtailcloudinary-tag" data-tag="" href="{% url 'wagtailcloudinary:browse' %}">All</a></div>
+      {% for item in tags %}
+      <div class="status-tag tag-{{ item }} primary"><a class="js-wagtailcloudinary-tag" data-tag="{{ item|urlencode }}" href="{% url 'wagtailcloudinary:browse' %}">{{ item }}</a></div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+    <div id="image-results">
+      <div class="wagtailcloudinary-wrapper">
+        <ul class="listing images horiz chooser">
+          {% include 'wagtailcloudinary/include/browse_ajax.html' %}
+        </ul>
+        {% if next_cursor %}
+        <a href="#" class="js-wagtailcloudinary-more button button-small button-secondary" data-next="{{ next_cursor }}" data-tag="{{ tag }}" data-ajax-url="{% url 'wagtailcloudinary:browse' %}">{% trans 'Load more' %}</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+  <section id="upload" class="nice-padding">
+    <div class="drop-zone">
+      <p>{% trans 'Drag and drop images into this area to upload immediately.' %}</p>
+      <div class="fileupload-wrapper">
+        <label class="fileupload-button button bicolor icon icon-plus">
+          <span>{% trans 'Or choose from your computer' %}</span>
+          <input type="file" class="upload fileupload" multiple accept="image/*" name="images[]" data-url="{% url 'wagtailcloudinary:upload' %}" />
+        </label>
+      </div>
+    </div>
+    <div class="progress">
+      <div class="bar"></div>
+    </div>
+    <div class="wagtailcloudinary-upload-wrapper">
+      <ul class="listing images horiz chooser">
+      </ul>
+    </div>
+  </section>
+</div>
