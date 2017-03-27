@@ -1,3 +1,4 @@
+import cloudinary
 import cloudinary.api
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -36,9 +37,10 @@ def staff_nocache(view):
 class CloudinarySite():
     def __init__(self, name='cloudinary'):
         self.name = name
-        w, h = getattr(settings, 'WAGTAILCLOUDINARY_ADMIN_IMAGE_SIZE', (130, 130))
+        w, h = getattr(settings, 'WAGTAILCLOUDINARY_ADMIN_IMAGE_SIZE', (165, 165))
         self.admin_image_version = 'w_{},h_{},c_fill'.format(w, h)
-        self.base_url = settings.WAGTAILCLOUDINARY_BASE_URL
+        config = cloudinary.config()
+        self.base_url = 'https://res.cloudinary.com/{name}/'.format(name=config.cloud_name)
 
     def get_urls(self):
         from django.conf.urls import url

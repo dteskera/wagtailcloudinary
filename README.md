@@ -10,7 +10,7 @@ pip install -e git+git://github.com/dteskera/wagtailcloudinary.git#egg=wagtailcl
 ```
 Or you can used a stable version:
 ```
-pip install -e git+git://github.com/dteskera/wagtailcloudinary.git@v0.2#egg=wagtailcloudinary
+pip install -e git+git://github.com/dteskera/wagtailcloudinary.git@v0.3#egg=wagtailcloudinary
 ```
 
 ## Configuration
@@ -25,7 +25,6 @@ INSTALLED_APPS = [
 ```
 
 in settings.py put your cloud_name, api_key and apy_secret into cloudinary configuration
-also set WAGTAILCLOUDINARY_BASE_URL to your base cloudinary url
 
 ```
 import cloudinary
@@ -35,8 +34,6 @@ cloudinary.config(
     api_key=<YOUR_CLOUDINARY_API_KEY>,
     api_secret=<YOUR_CLOUDINARY_API_SECRET>,
 )
-
-WAGTAILCLOUDINARY_BASE_URL = 'https://res.cloudinary.com/{name}/'.format(name='<YOUR_CLOUDINARY_CLOUD_NAME>')
 ```
 
 ## Usage
