@@ -24,7 +24,6 @@ INSTALLED_APPS = [
 ]
 ```
 
-## Usage
 in settings.py put your cloud_name, api_key and apy_secret into cloudinary configuration
 also set WAGTAILCLOUDINARY_BASE_URL to your base cloudinary url
 
@@ -39,6 +38,8 @@ cloudinary.config(
 
 WAGTAILCLOUDINARY_BASE_URL = 'https://res.cloudinary.com/{name}/'.format(name='<YOUR_CLOUDINARY_CLOUD_NAME>')
 ```
+
+## Usage
 
 in models.py
 
