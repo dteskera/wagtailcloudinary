@@ -36,8 +36,9 @@ def staff_nocache(view):
 class CloudinarySite():
     def __init__(self, name='cloudinary'):
         self.name = name
-        w, h = getattr(settings, 'WAGTAILCLOUDINARY_ADMIN_IMAGE_SIZE', (165, 165))
+        w, h = getattr(settings, 'WAGTAILCLOUDINARY_ADMIN_IMAGE_SIZE', (130, 130))
         self.admin_image_version = 'w_{},h_{},c_fill'.format(w, h)
+        self.base_url = settings.WAGTAILCLOUDINARY_BASE_URL
 
     def get_urls(self):
         from django.conf.urls import url
@@ -54,7 +55,7 @@ class CloudinarySite():
         return self.get_urls(), 'wagtailcloudinary', self.name
 
     def browse(self, request):
-        params = {'max_results': 9, 'tags': True}
+        params = {'max_results': 18, 'tags': True}
         if 'next' in request.GET:
             params['next_cursor'] = request.GET['next']
         tag = request.GET.get('tag', None)
@@ -96,7 +97,7 @@ class CloudinarySite():
             {
                 'image_json': {
                     'value': path,
-                    'url': '{}{}'.format(settings.CLOUDINARY_BASE_URL, transformed)
+                    'url': '{}{}'.format(self.base_url, transformed)
                 }
             }
         )

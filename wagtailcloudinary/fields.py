@@ -12,7 +12,7 @@ CLOUDINARY_FIELD_DB_RE = r'(?:(?P<resource_type>image|raw|video)/(?P<type>upload
 class CloudinaryResource(cloudinary.CloudinaryResource):
     @property
     def base_url(self):
-        base_url = settings.CLOUDINARY_BASE_URL
+        base_url = 'https://res.cloudinary.com/{name}/'.format(name=self.build_url().split('/')[3])
         return '{base_url}{resource_type}/{type}'.format(
             base_url=base_url, resource_type=self.resource_type, type=self.type)
 
@@ -45,7 +45,7 @@ class CloudinaryWidget(TextInput):
         )
 
     def render(self, name, value, attrs=None):
-        w, h = getattr(settings, 'WAGTAILCLOUDINARY_ADMIN_IMAGE_SIZE', (165, 165))
+        w, h = getattr(settings, 'WAGTAILCLOUDINARY_ADMIN_IMAGE_SIZE', (130, 130))
         if isinstance(value, str):
             value = str_to_cloudinary_resource(value)
         admin_image_version = 'w_{},h_{},c_fill'.format(w, h)

@@ -19,6 +19,10 @@
   position: relative;
 }
 
+.listing.images > li {
+  width: 100px;
+}
+
 .listing.images .js-wagtailcloudinary-update-tags, .listing.images .js-wagtailcloudinary-update{
   color: white;
 }
