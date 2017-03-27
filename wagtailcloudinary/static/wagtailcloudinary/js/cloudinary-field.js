@@ -1,7 +1,7 @@
 (function($){
   'use strict';
   $(document).ready(function() {
-    $('.js-wagtailcloudinary').on('click', function(e){
+    $('.objects').on('click', '.js-wagtailcloudinary', function(e){
       e.preventDefault();
       var link = $(this);
       var id = link.data('target')
@@ -26,7 +26,7 @@
         }
       });
     });
-    $('.js-wagtailcloudinary-clear').on('click', function(e){
+    $('.objects').on('click', '.js-wagtailcloudinary-clear', function(e){
       e.preventDefault();
       var link = $(this);
       link.closest('.image-chooser').addClass('blank');
